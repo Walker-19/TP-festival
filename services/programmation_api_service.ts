@@ -14,6 +14,19 @@ class ProgrammationApiService {
 
 		return data;
 	};
+
+	// récupérer la programmation d'un artiste par son id
+	public getProgrammationByArtistId = async (
+		id: number,
+	): Promise<Programme[]> => {
+		const request = new Request(
+			`http://10.0.2.2:3000/programme?artistId=${id}&_embed=artist&_embed=stage&_embed=day`,
+		);
+		const response = await fetch(request);
+		const data = await response.json();
+
+		return data;
+	};
 }
 
 export default ProgrammationApiService;

@@ -49,5 +49,6 @@ const styles = StyleSheet.create({
 	title: {
 		fontFamily: fonts.subtitle,
 		fontSize: 21,
+		marginBlockEnd: 10,
 	},
 });

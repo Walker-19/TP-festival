@@ -26,11 +26,17 @@ const RootLayout = () => {
 
 	// définir la liste des écrans et leur personnalisation
 	return (
-		<Stack>
+		<Stack
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
+			<Stack.Screen name="index" />
 			<Stack.Screen
-				name="index"
+				name="artist/[slug]"
 				options={{
-					headerShown: false,
+					// animation permet de gérer les transitions entres écrans
+					animation: "slide_from_bottom",
 				}}
 			/>
 		</Stack>

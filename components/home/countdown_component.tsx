@@ -11,36 +11,36 @@ const CountDownComponent = (): React.JSX.Element => {
 		{} as CountDownState,
 	);
 
+	// date d'aujourd'hui
+	const now = new Date();
+
+	// date future
+	const eventDate = new Date("2025-07-15T14:00:00.000");
+
+	// différence de millisecondes entres les deux dates
+	const diffDate = eventDate.getTime() - now.getTime();
+
 	// exécuter des actions à l'affichage du composant
 	useEffect(
 		() => {
+			// calcul du compte à rebours
+			const result: CountDownState = {
+				days: new NumberUtilsService().addZero(
+					Math.floor(diffDate / (1000 * 60 * 60 * 24)),
+				),
+				hours: new NumberUtilsService().addZero(
+					Math.floor((diffDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+				),
+				minutes: new NumberUtilsService().addZero(
+					Math.floor((diffDate % (1000 * 60 * 60)) / (1000 * 60)),
+				),
+				seconds: new NumberUtilsService().addZero(
+					Math.floor((diffDate % (1000 * 60)) / 1000),
+				),
+			};
+
 			// timer
 			const timer = setInterval(() => {
-				// date d'aujourd'hui
-				const now = new Date();
-
-				// date future
-				const eventDate = new Date("2025-07-15T14:00:00.000");
-
-				// différence de millisecondes entres les deux dates
-				const diffDate = eventDate.getTime() - now.getTime();
-
-				// calcul du compte à rebours
-				const result: CountDownState = {
-					days: new NumberUtilsService().addZero(
-						Math.floor(diffDate / (1000 * 60 * 60 * 24)),
-					),
-					hours: new NumberUtilsService().addZero(
-						Math.floor((diffDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-					),
-					minutes: new NumberUtilsService().addZero(
-						Math.floor((diffDate % (1000 * 60 * 60)) / (1000 * 60)),
-					),
-					seconds: new NumberUtilsService().addZero(
-						Math.floor((diffDate % (1000 * 60)) / 1000),
-					),
-				};
-
 				// mise à jour de l'état
 				setCountDown(result);
 			}, 1000);
@@ -51,7 +51,7 @@ const CountDownComponent = (): React.JSX.Element => {
 				clearInterval(timer);
 			};
 		}, // un array vide déclenche des actions uniquement à l'affichage du composant, 1 seule fois
-		[],
+		[diffDate],
 	);
 
 	return (

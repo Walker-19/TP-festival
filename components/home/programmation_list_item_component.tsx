@@ -1,7 +1,8 @@
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -35,7 +36,9 @@ const ProgrammationListItemComponent = ({
 			>
 				<Feather name="heart" style={styles.icon} />
 			</TouchableOpacity>
-			<TouchableWithoutFeedback onPress={() => console.log("container")}>
+			<TouchableWithoutFeedback
+				onPress={() => router.push(`/artist/${programme.artist.slug}`)}
+			>
 				<View style={styles.innerContainer}>
 					<Image
 						source={`http://10.0.2.2:3000/images/artists/${programme.artist.poster}`}
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 	},
 	innerContainer: {
-		width: 130,
+		width: 135,
 		backgroundColor: "white",
 		padding: 15,
 	},

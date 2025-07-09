@@ -1,13 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import { Image, ImageBackground } from "expo-image";
 import type React from "react";
-import {
-	Dimensions,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import {
 	GestureHandlerRootView,
 	ScrollView,
@@ -54,36 +48,21 @@ const HomeScreen = (): React.JSX.Element => {
 						contentFit="contain"
 						style={styles.crowd}
 					/>
-					{/* ScrollView : contenu défilant */}
-					<ScrollView>
-						<ImageBackground
-							source={require("../assets/images/DECHIRE-GRIS-SIMPLE.png")}
-							contentFit="fill"
-							style={styles.scrollContainer}
-						>
-							{/* compte à rebours */}
-							<CountDownComponent />
-
-							{/* programmation */}
-							<ProgrammationListComponent />
-
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-							<Text>coucou</Text>
-						</ImageBackground>
-					</ScrollView>
 				</ImageBackground>
+				{/* ScrollView : contenu défilant */}
+				<ScrollView>
+					<ImageBackground
+						source={require("../assets/images/DECHIRE-GRIS-SIMPLE.png")}
+						contentFit="fill"
+						style={styles.scrollContainer}
+					>
+						{/* compte à rebours */}
+						<CountDownComponent />
+
+						{/* programmation */}
+						<ProgrammationListComponent />
+					</ImageBackground>
+				</ScrollView>
 			</View>
 		</GestureHandlerRootView>
 	);
@@ -116,7 +95,7 @@ const styles = StyleSheet.create({
 	},
 	imgBg: {
 		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height,
+		height: Dimensions.get("window").height * 0.7,
 		position: "absolute",
 		top: 0,
 		left: 0,
@@ -126,7 +105,7 @@ const styles = StyleSheet.create({
 		height: 400,
 		position: "absolute",
 		top: Dimensions.get("window").height * 0.2,
-		left: Dimensions.get("window").width - 350,
+		left: Dimensions.get("window").width / 2 - 300 / 2,
 	},
 	crowd: {
 		width: Dimensions.get("window").width,
@@ -135,7 +114,7 @@ const styles = StyleSheet.create({
 		top: Dimensions.get("window").height * 0.2 + 350,
 	},
 	scrollContainer: {
-		paddingBlockStart: 50,
+		paddingBlockStart: 30,
 		marginBlockStart: Dimensions.get("window").height * 0.7,
 	},
 });
