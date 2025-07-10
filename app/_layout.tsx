@@ -1,7 +1,8 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -14,11 +15,21 @@ const RootLayout = () => {
 		ParabolicaMedium: require("../assets/fonts/Parabolica-Medium.ttf"),
 	});
 
+	const checkFavorites = useCallback(async () => {
+		const favorites = await AsyncStorage.getItem("favorites");
+
+		if (!favorites) {
+			await AsyncStorage.setItem("favorites", JSON.stringify([]));
+		}
+	}, []);
+
 	useEffect(() => {
+		checkFavorites();
+
 		if (loaded) {
 			SplashScreen.hideAsync();
 		}
-	}, [loaded]);
+	}, [loaded, checkFavorites]);
 
 	if (!loaded) {
 		return null;

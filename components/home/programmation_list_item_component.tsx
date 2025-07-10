@@ -1,8 +1,9 @@
 import { Feather, Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -10,7 +11,7 @@ import {
 	TouchableWithoutFeedback,
 	View,
 } from "react-native";
-import { fonts } from "../../constants/design_constants";
+import { colors, fonts } from "../../constants/design_constants";
 import type Artist from "../../models/artist";
 import type ProgrammationListItemProps from "../../models/props/programmation_list_item_props";
 import ArtistApiService from "../../services/artist_api_service";
@@ -21,18 +22,51 @@ const ProgrammationListItemComponent = ({
 	programme,
 }: ProgrammationListItemProps): React.JSX.Element => {
 	const [artist, setArtist] = useState<Artist>({} as Artist);
+	const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
+	const setFavorite = useCallback(async () => {
+		const favorites: number[] = JSON.parse(
+			(await AsyncStorage.getItem("favorites")) as string,
+		);
+
+		if (favorites.indexOf(artist.id) !== -1) {
+			setIsFavorite(true);
+		}
+	}, [artist]);
+
+	const handleFavorite = async () => {
+		setIsFavorite(!isFavorite);
+
+		const favorites: number[] = JSON.parse(
+			(await AsyncStorage.getItem("favorites")) as string,
+		);
+
+		if (favorites.indexOf(artist.id) === -1) {
+			favorites.push(artist.id);
+		} else {
+			favorites.splice(favorites.indexOf(artist.id), 1);
+		}
+
+		await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+	};
 
 	useEffect(() => {
 		new ArtistApiService()
 			.getArtistBySlug(programme.artist.slug)
-			.then((data) => setArtist(data as Artist));
-	}, [programme]);
+			.then((data) => {
+				setArtist(data as Artist);
+				setFavorite();
+			});
+	}, [programme, setFavorite]);
 
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
-				style={styles.iconBtn}
-				onPress={() => console.log("heart")}
+				style={{
+					...styles.iconBtn,
+					backgroundColor: isFavorite ? colors.ternary : "rgba(0 0 0 / 0.2)",
+				}}
+				onPress={handleFavorite}
 			>
 				<Feather name="heart" style={styles.icon} />
 			</TouchableOpacity>
@@ -82,7 +116,6 @@ const styles = StyleSheet.create({
 		width: 30,
 		height: 30,
 		borderRadius: "50%",
-		backgroundColor: "rgba(0 0 0 / 0.2)",
 		justifyContent: "center",
 		alignItems: "center",
 		position: "absolute",
@@ -100,9 +133,9 @@ const styles = StyleSheet.create({
 		padding: 15,
 	},
 	img: {
-		width: 70,
-		height: 70,
-		borderRadius: 35,
+		width: 90,
+		height: 90,
+		borderRadius: 45,
 		alignSelf: "center",
 	},
 	artistName: {
