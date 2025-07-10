@@ -42,7 +42,8 @@ const RootLayout = () => {
 				headerShown: false,
 			}}
 		>
-			<Stack.Screen name="index" />
+			{/* <Stack.Screen name="index" /> */}
+			<Stack.Screen name="(tabs)" />
 			<Stack.Screen
 				name="artist/[slug]"
 				options={{
