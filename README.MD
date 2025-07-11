@@ -18,6 +18,7 @@
     - For iOS simulator: use `http://127.0.0.1:3000`.
     - Go to the `_api` folder and read the `_demarrer_api.txt` file.
     - To start the API, run the following command in the `_api` directory:
+		npx json-server db.json
 
      **Launch application**
         - To run with Expo Go:
