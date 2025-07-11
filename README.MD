@@ -12,7 +12,7 @@
 
 ### Run application
      **Configuration**
-    - Add your IP address in the `config.ts` file:  
+    - Add your IP address in the `constants/config.ts` file:  
     - For Expo Go: use your local machine's IP address.  
     - For Android emulator: use `http://127.0.2.2:3000`.  
     - For iOS simulator: use `http://127.0.0.1:3000`.
