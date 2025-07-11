@@ -11,6 +11,7 @@ import {
 	TouchableWithoutFeedback,
 	View,
 } from "react-native";
+import { BASE_URL } from "../../constants/config";
 import { colors, fonts } from "../../constants/design_constants";
 import type Artist from "../../models/artist";
 import type ProgrammationListItemProps from "../../models/props/programmation_list_item_props";
@@ -75,7 +76,7 @@ const ProgrammationListItemComponent = ({
 			>
 				<View style={styles.innerContainer}>
 					<Image
-						source={`http://10.0.2.2:3000/images/artists/${programme.artist.poster}`}
+						source={`${BASE_URL}/images/artists/${programme.artist.poster}`}
 						style={styles.img}
 					/>
 					<Text style={styles.artistName}>

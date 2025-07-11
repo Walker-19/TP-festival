@@ -18,6 +18,7 @@ import {
 import YoutubePlayer from "react-native-youtube-iframe";
 import ArtistProgrammationItemComponent from "../../components/artist/artist_programmation_item_component";
 import ArtistSocialsItemComponent from "../../components/artist/artist_socials_item_component";
+import { BASE_URL } from "../../constants/config";
 import { colors, fonts } from "../../constants/design_constants";
 import type Artist from "../../models/artist";
 import type ArtistCountry from "../../models/artist_country";
@@ -103,7 +104,7 @@ const ArtistSlug = (): React.JSX.Element => {
 				<ScrollView>
 					<View>
 						<ImageBackground
-							source={`http://10.0.2.2:3000/images/artists/${artist.poster}`}
+							source={`${BASE_URL}/images/artists/${artist.poster}`}
 							contentFit="cover"
 							style={styles.poster}
 						></ImageBackground>

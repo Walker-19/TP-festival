@@ -1,29 +1,22 @@
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import {
 	GestureHandlerRootView,
 	ScrollView,
 } from "react-native-gesture-handler";
 
-const BilletScreen = (): React.JSX.Element => {
+const plan = () => {
 	return (
 		<GestureHandlerRootView>
 			<ScrollView>
 				<View>
-					<Text>BilletScreen</Text>
+					<Text>plan</Text>
 				</View>
 			</ScrollView>
 		</GestureHandlerRootView>
 	);
 };
 
-export default BilletScreen;
+export default plan;
 
-const styles = StyleSheet.create({
-	iconContainer: {
-		flexDirection: "row",
-		marginRight: 10,
-	},
-	icon: {
-		marginHorizontal: 8,
-	},
-});
+const styles = StyleSheet.create({});

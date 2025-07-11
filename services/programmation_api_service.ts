@@ -1,3 +1,4 @@
+import { BASE_URL } from "../constants/config";
 import type Programme from "../models/programme";
 
 class ProgrammationApiService {
@@ -7,7 +8,7 @@ class ProgrammationApiService {
 		// sur android, le localhost est accessible à partir l'IP 10.0.2.2
 		// sur ios, le localhost est accessible à partir l'IP 127.0.1.1
 		const request = new Request(
-			"http://10.0.2.2:3000/programme?_embed=artist&_embed=stage&_embed=day",
+			`${BASE_URL}/programme?_embed=artist&_embed=stage&_embed=day`,
 		);
 		const response = await fetch(request);
 		const data = await response.json();
@@ -20,7 +21,7 @@ class ProgrammationApiService {
 		id: number,
 	): Promise<Programme[]> => {
 		const request = new Request(
-			`http://10.0.2.2:3000/programme?artistId=${id}&_embed=artist&_embed=stage&_embed=day`,
+			`${BASE_URL}/programme?artistId=${id}&_embed=artist&_embed=stage&_embed=day`,
 		);
 		const response = await fetch(request);
 		const data = await response.json();

@@ -1,3 +1,4 @@
+import { BASE_URL } from "../constants/config";
 import type Artist from "../models/artist";
 
 class ArtistApiService {
@@ -6,7 +7,7 @@ class ArtistApiService {
 		slug: string,
 	): Promise<Artist | undefined> => {
 		const request = new Request(
-			`http://10.0.2.2:3000/artists?slug=${slug}&_embed=music_type`,
+			`${BASE_URL}/artists?slug=${slug}&_embed=music_type`,
 		);
 		const response = await fetch(request);
 		const data = await response.json();
