@@ -6,7 +6,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { colors } from "../constants/design_constants";
-import { Image } from "expo-image";
 import UserIconBtnComponent from "../components/shared/user_icon_btn_component";
 
 SplashScreen.preventAutoHideAsync();
@@ -76,11 +75,12 @@ const RootLayout = () => {
 				}}
 			/>
       <Stack.Screen
-	    	name="comment_venir"
+				name="comment_venir"
 				options={{
 					// animation permet de gérer les transitions entres écrans
 					animation: "slide_from_bottom",
 					headerShown: true,
+				}}
 			/>
 		</Stack>
 	);
