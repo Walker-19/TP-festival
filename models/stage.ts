@@ -2,6 +2,7 @@ import type StageType from "./stage_type";
 
 type Stage = {
 	id: number;
+	artistId: number,
 	stage_typeId: number;
 	slug: string;
 	name: string;

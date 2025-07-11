@@ -21,6 +21,15 @@ class StageApiService {
 		const data = await response.json();
 		return data;
 	}
+
+    public async getListArtistByStage(stageId: number) {
+        const request = new Request(
+            `${BASE_URL}/programme?stageId=${stageId}&_embed=artist`
+        );
+        const response = await fetch(request);
+        const data = await response.json()
+        return data;
+    }
 }
 
 export default StageApiService;

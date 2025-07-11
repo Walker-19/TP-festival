@@ -14,6 +14,18 @@ class ArtistApiService {
 
 		return (data as Artist[]).shift();
 	};
+
+	public async getArtistById(artistId: number) : Promise<Artist | undefined> {
+		const request = new Request(
+			`${BASE_URL}/artists?id=${artistId}`
+		);
+
+		const response = await fetch(request);
+
+		const data = await response.json();
+
+		return (data as Artist[]).shift();
+	}
 }
 
 export default ArtistApiService;

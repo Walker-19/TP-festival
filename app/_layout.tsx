@@ -3,6 +3,10 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
+import { StyleSheet } from "react-native";
+import { colors } from "../constants/design_constants";
+import { Image } from "expo-image";
+import UserIconBtnComponent from "../components/shared/user_icon_btn_component";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -40,6 +44,15 @@ const RootLayout = () => {
 		<Stack
 			screenOptions={{
 				headerShown: false,
+				headerStyle: styles.headerStyle,
+				headerTitleAlign: "center",
+				headerTitle: () => (
+					<Image
+						source={require("../assets/images/27839514-diaporama.png")}
+						style={styles.headerTitle}
+					/>
+				),
+				headerRight: () => <UserIconBtnComponent />,
 			}}
 		>
 			{/* <Stack.Screen name="index" /> */}
@@ -51,8 +64,27 @@ const RootLayout = () => {
 					animation: "slide_from_bottom",
 				}}
 			/>
+			<Stack.Screen
+				name="stage/[stageId]"
+				options={{
+					headerShown: true,
+					// header:
+					// animation permet de gérer les transitions entres écrans
+					animation: "slide_from_right",
+				}}
+			/>
 		</Stack>
 	);
 };
 
 export default RootLayout;
+
+const styles = StyleSheet.create({
+	headerStyle: {
+		backgroundColor: colors.secondary,
+	},
+	headerTitle: {
+		width: 95,
+		height: 40,
+	},
+})
