@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
 	Dimensions,
@@ -24,6 +25,7 @@ import StringUtilsService from "../../services/string_utils_service";
 const ProgrammationScreen = (): React.JSX.Element => {
 	const [typeStage, setTypeStage] = useState<StageType[]>();
 	const [stage, setStage] = useState<Map<number, Stage[]>>();
+	const route = useRouter();
 
 	useEffect(() => {
 		const fethcTypeStage = async () => {
@@ -58,7 +60,10 @@ const ProgrammationScreen = (): React.JSX.Element => {
 										<View style={styles.stageList}>
 											{stage?.get(stageType.id)?.map((st) => {
 												return (
-													<TouchableOpacity key={st.id}>
+													<TouchableOpacity
+														onPress={() => route.navigate(`stage/${st.id}`)}
+														key={st.id}
+													>
 														<View style={styles.itemStage}>
 															<Text key={st.id}>
 																{new StringUtilsService().getTextOverflow(

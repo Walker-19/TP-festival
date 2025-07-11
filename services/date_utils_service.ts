@@ -19,6 +19,19 @@ class DateUtilsService {
 			yearShort: fullDate[3].substring(2),
 		};
 	};
+	public formatDate(value: string): string {
+	const date = new Date(value);
+	const month = new Intl.DateTimeFormat("fr-FR", {
+		month: "long",
+	}).format(date);
+	const weekDay = new Intl.DateTimeFormat("fr-Fr", {
+		weekday: "long",
+	}).format(date);
+	const day = new Intl.DateTimeFormat("fr-FR", {
+		day: "numeric",
+	}).format(date);
+	return `${weekDay} ${day} ${month}`;
+}
 }
 
 export default DateUtilsService;

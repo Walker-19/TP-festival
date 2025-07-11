@@ -6,6 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { colors } from "../constants/design_constants";
+import { Image } from "expo-image";
 import UserIconBtnComponent from "../components/shared/user_icon_btn_component";
 
 SplashScreen.preventAutoHideAsync();
@@ -65,13 +66,21 @@ const RootLayout = () => {
 				}}
 			/>
 			<Stack.Screen
-				name="comment_venir"
+				name="stage/[stageId]"
+				options={{
+					headerShown: true,
+					// header:
+					// animation permet de gérer les transitions entres écrans
+					animation: "slide_from_right",
+
+				}}
+			/>
+      <Stack.Screen
+	    	name="comment_venir"
 				options={{
 					// animation permet de gérer les transitions entres écrans
 					animation: "slide_from_bottom",
 					headerShown: true,
-
-				}}
 			/>
 		</Stack>
 	);
@@ -79,7 +88,8 @@ const RootLayout = () => {
 
 export default RootLayout;
 
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
+
 	headerStyle: {
 		backgroundColor: colors.secondary,
 	},
@@ -87,4 +97,5 @@ export default RootLayout;
 		width: 95,
 		height: 40,
 	},
-})
+        })
+
