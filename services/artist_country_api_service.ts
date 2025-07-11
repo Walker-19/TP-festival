@@ -1,3 +1,4 @@
+import { BASE_URL } from "../constants/config";
 import type ArtistCountry from "../models/artist_country";
 
 class ArtistCountryApiService {
@@ -6,7 +7,7 @@ class ArtistCountryApiService {
 		id: number,
 	): Promise<ArtistCountry[]> => {
 		const request = new Request(
-			`http://10.0.2.2:3000/artists_countries?artistId=${id}&_embed=country&_embed=artist`,
+			`${BASE_URL}/artists_countries?artistId=${id}&_embed=country&_embed=artist`,
 		);
 		const response = await fetch(request);
 		const data = await response.json();
