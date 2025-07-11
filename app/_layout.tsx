@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
+import { Image } from "expo-image";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
@@ -71,7 +72,15 @@ const RootLayout = () => {
 					// header:
 					// animation permet de gérer les transitions entres écrans
 					animation: "slide_from_right",
+
 				}}
+			/>
+      <Stack.Screen
+	    	name="comment_venir"
+				options={{
+					// animation permet de gérer les transitions entres écrans
+					animation: "slide_from_bottom",
+					headerShown: true,
 			/>
 		</Stack>
 	);
@@ -80,6 +89,7 @@ const RootLayout = () => {
 export default RootLayout;
 
 const styles = StyleSheet.create({
+
 	headerStyle: {
 		backgroundColor: colors.secondary,
 	},
@@ -87,4 +97,5 @@ const styles = StyleSheet.create({
 		width: 95,
 		height: 40,
 	},
-})
+        })
+
